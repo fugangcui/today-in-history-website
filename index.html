@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today in History - Chrome Extension</title>
+    <meta name="description" content="Explore important historical events, births, and deaths that happened on any day. Beautiful Chrome extension with dark/light themes and smart categorization.">
+    <meta name="keywords" content="history, chrome extension, historical events, education, today in history, learning">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Today in History - Chrome Extension">
+    <meta property="og:description" content="Explore important historical events, births, and deaths that happened on any day.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://today-in-history.vercel.app">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Today in History - Chrome Extension">
+    <meta name="twitter:description" content="Explore important historical events, births, and deaths that happened on any day.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='url(%23grad)'></rect><defs><linearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%234f46e5'></stop><stop offset='100%25' style='stop-color:%237c3aed'></stop></linearGradient></defs><text x='50' y='55' font-family='Arial' font-size='40' fill='white' text-anchor='middle' font-weight='bold'>📚</text></svg>">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <h1>Today in History</h1>
+            </div>
+            <nav class="nav">
+                <a href="#features">Features</a>
+                <a href="#preview">Preview</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#install" class="cta-btn">Install Extension</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 class="hero-title">Discover History Every Day</h2>
+                    <p class="hero-subtitle">
+                        Explore fascinating historical events, notable births, and significant deaths that happened on any day in history. 
+                        Beautiful interface with dark/light themes and intelligent categorization.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="install-btn" onclick="installExtension()">
+                            <span class="btn-icon">🚀</span>
+                            Install Free Extension
+                        </button>
+                        <button class="demo-btn" onclick="scrollToPreview()">
+                            <span class="btn-icon">👁️</span>
+                            See Preview
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <strong>10,000+</strong>
+                            <span>Historical Events</span>
+                        </div>
+                        <div class="stat">
+                            <strong>365</strong>
+                            <span>Days Covered</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Free</strong>
+                            <span>Forever</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="extension-mockup">
+                        <div class="mockup-window">
+                            <div class="mockup-header">
+                                <div class="mockup-controls">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="mockup-title">Today in History</div>
+                            </div>
+                            <div class="mockup-content" id="mockup-content">
+                                <!-- Extension demo will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Today in History?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful Interface</h3>
+                    <p>Modern design with smooth animations, dark/light theme support, and intuitive navigation that makes exploring history a pleasure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏷️</div>
+                    <h3>Smart Categories</h3>
+                    <p>Events are automatically categorized by type - Politics, Technology, Culture, Sports, and more with color-coded labels.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Daily Highlights</h3>
+                    <p>Discover the most important events of each day with our intelligent highlighting system that surfaces the most significant moments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Compact Mode</h3>
+                    <p>Switch between normal and compact views to fit more information on your screen and customize your reading experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Wikipedia Links</h3>
+                    <p>Quick access to detailed Wikipedia articles for deeper exploration of events and historical figures that interest you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Fast & Lightweight</h3>
+                    <p>Optimized for speed with beautiful loading animations and minimal memory usage - won't slow down your browser.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preview Section -->
+    <section id="preview" class="preview">
+        <div class="container">
+            <h2 class="section-title">See It In Action</h2>
+            <div class="preview-content">
+                <div class="preview-tabs">
+                    <button class="tab-btn active" onclick="showTab('events')">Historical Events</button>
+                    <button class="tab-btn" onclick="showTab('births')">Notable Births</button>
+                    <button class="tab-btn" onclick="showTab('deaths')">Notable Deaths</button>
+                </div>
+                <div class="preview-demo">
+                    <div class="demo-controls">
+                        <input type="date" id="demo-date" onchange="updateDemo()" value="2024-09-22">
+                        <button class="theme-toggle" onclick="toggleDemoTheme()">🌙</button>
+                        <button class="view-toggle" onclick="toggleDemoView()">📋</button>
+                    </div>
+                    <div class="demo-content" id="demo-content">
+                        <!-- Demo content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Exploring History Today</h2>
+                <p>Join thousands of history enthusiasts who discover something new every day</p>
+                <button class="install-btn large" onclick="installExtension()">
+                    <span class="btn-icon">📚</span>
+                    Install Today in History
+                </button>
+                <p class="cta-note">Free forever • No registration required • Works offline</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Today in History</h3>
+                    <p>Discover fascinating historical events every day with our beautiful Chrome extension.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#preview">Preview</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="mailto:support@thebesttools.net">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://chromewebstore.google.com/detail/today-in-history/cdiehfmgdlomnklkkmpoliodmjfblcph" target="_blank">Chrome Web Store</a></li>
+                        <li><a href="#" onclick="showChangelog()">Changelog</a></li>
+                        <li><a href="mailto:support@thebesttools.net">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Today in History. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample historical data for demo
+        const sampleData = {
+            events: [
+                {
+                    date: "1961",
+                    title: "United Nations Secretary-General Dag Hammarskjöld dies in a plane crash",
+                    category: "politics"
+                },
+                {
+                    date: "1977", 
+                    title: "NASA launches Voyager 1 spacecraft toward outer planets",
+                    category: "technology"
+                },
+                {
+                    date: "1891",
+                    title: "Composer John Philip Sousa conducts first performance of 'The Stars and Stripes Forever'",
+                    category: "culture"
+                }
+            ],
+            births: [
+                {
+                    date: "1982",
+                    title: "Alessandro Cibocchi, Italian footballer",
+                    category: "sports"
+                },
+                {
+                    date: "1961",
+                    title: "Nancy Travis, American actress and producer",
+                    category: "culture"
+                },
+                {
+                    date: "1931",
+                    title: "Viktor Gorbatko, Russian pilot and astronaut",
+                    category: "technology"
+                }
+            ],
+            deaths: [
+                {
+                    date: "2011",
+                    title: "Kurt Sanderling, German conductor and educator (b. 1912)",
+                    category: "culture"
+                },
+                {
+                    date: "1961",
+                    title: "Dag Hammarskjöld, Swedish economist and diplomat (b. 1905)",
+                    category: "politics"
+                }
+            ]
+        };
+
+        // Current demo state
+        let currentTab = 'events';
+        let isDarkTheme = false;
+        let isCompactView = false;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initMockup();
+            updateDemo();
+            // Set today's date as default
+            document.getElementById('demo-date').value = new Date().toISOString().split('T')[0];
+        });
+
+        // Extension installation
+        function installExtension() {
+            // Open Chrome Web Store page for Today in History extension
+            window.open('https://chromewebstore.google.com/detail/today-in-history/cdiehfmgdlomnklkkmpoliodmjfblcph', '_blank');
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Smooth scroll to preview
+        function scrollToPreview() {
+            document.getElementById('preview').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Tab switching
+        function showTab(tabName) {
+            currentTab = tabName;
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            updateDemo();
+        }
+
+        // Theme toggle for demo
+        function toggleDemoTheme() {
+            isDarkTheme = !isDarkTheme;
+            const button = document.querySelector('.theme-toggle');
+            button.textContent = isDarkTheme ? '☀️' : '🌙';
+            
+            const demoContent = document.getElementById('demo-content');
+            if (isDarkTheme) {
+                demoContent.style.background = '#1e293b';
+                demoContent.style.color = '#f8fafc';
+            } else {
+                demoContent.style.background = '';
+                demoContent.style.color = '';
+            }
+            
+            updateDemo();
+        }
+
+        // View toggle for demo
+        function toggleDemoView() {
+            isCompactView = !isCompactView;
+            const button = document.querySelector('.view-toggle');
+            button.textContent = isCompactView ? '📄' : '📋';
+            updateDemo();
+        }
+
+        // Update demo content
+        function updateDemo() {
+            const demoContent = document.getElementById('demo-content');
+            const data = sampleData[currentTab] || [];
+            
+            if (data.length === 0) {
+                demoContent.innerHTML = '<div class="loading"><div class="loading-book"><div class="loading-page"></div><div class="loading-page"></div><div class="loading-page"></div></div><div class="loading-text">Exploring historical archives...</div></div>';
+                return;
+            }
+
+            let html = '';
+            data.forEach(item => {
+                const compactClass = isCompactView ? ' style="padding: 12px; margin-bottom: 8px;"' : '';
+                html += `
+                    <div class="demo-event"${compactClass}>
+                        <div class="demo-date">${item.date}</div>
+                        <div class="demo-title">${item.title}</div>
+                        <span class="demo-category category-${item.category}">${getCategoryLabel(item.category)}</span>
+                    </div>
+                `;
+            });
+
+            demoContent.innerHTML = html;
+        }
+
+        // Get category label
+        function getCategoryLabel(category) {
+            const labels = {
+                politics: 'Politics',
+                technology: 'Technology',
+                culture: 'Culture',
+                sports: 'Sports',
+                disaster: 'Disaster'
+            };
+            return labels[category] || 'General';
+        }
+
+        // Initialize extension mockup
+        function initMockup() {
+            const mockupContent = document.getElementById('mockup-content');
+            mockupContent.innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <div style="font-size: 12px; opacity: 0.8;">📅 Select Date</div>
+                        <div style="font-weight: 600; margin-top: 5px;">September 22, 2024</div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="background: rgba(79, 70, 229, 0.1); border-radius: 8px; padding: 15px; border-left: 4px solid #4f46e5;">
+                        <div style="font-size: 10px; color: #4f46e5; font-weight: 600; background: rgba(79, 70, 229, 0.2); padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">⭐ Today's Highlights</div>
+                        <div style="font-weight: 600; font-size: 14px; margin-bottom: 5px;">3 important events</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 8px; margin-bottom: 15px; justify-content: center;">
+                    <button style="background: #4f46e5; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;">Events</button>
+                    <button style="background: white; color: #64748b; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 20px; font-size: 12px;">Births</button>
+                    <button style="background: white; color: #64748b; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 20px; font-size: 12px;">Deaths</button>
+                </div>
+
+                <div style="max-height: 200px; overflow-y: auto;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 8px; border-left: 4px solid #dc2626;">
+                        <div style="font-size: 10px; color: #4f46e5; font-weight: 600; background: rgba(79, 70, 229, 0.1); padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 6px;">1961</div>
+                        <div style="font-weight: 600; font-size: 12px; line-height: 1.3; margin-bottom: 6px;">UN Secretary-General Dag Hammarskjöld dies in plane crash</div>
+                        <span style="font-size: 9px; padding: 2px 6px; border-radius: 8px; background: rgba(220, 38, 38, 0.1); color: #dc2626;">Politics</span>
+                    </div>
+                    
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 8px; border-left: 4px solid #2563eb;">
+                        <div style="font-size: 10px; color: #4f46e5; font-weight: 600; background: rgba(79, 70, 229, 0.1); padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 6px;">1977</div>
+                        <div style="font-weight: 600; font-size: 12px; line-height: 1.3; margin-bottom: 6px;">NASA launches Voyager 1 spacecraft</div>
+                        <span style="font-size: 9px; padding: 2px 6px; border-radius: 8px; background: rgba(37, 99, 235, 0.1); color: #2563eb;">Technology</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show changelog modal
+        function showChangelog() {
+            alert('📝 Changelog\n\nVersion 2.0:\n• Beautiful new UI design\n• Dark/light theme support\n• Smart event categorization\n• Daily highlights feature\n• Compact view mode\n• Improved performance');
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
