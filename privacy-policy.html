@@ -82,7 +82,7 @@
                 <a href="index.html">Home</a>
                 <a href="index.html#features">Features</a>
                 <a href="index.html#preview">Preview</a>
-                <a href="index.html#install" class="cta-btn">Install Extension</a>
+                <a href="#" class="cta-btn" onclick="installExtension()">Install Extension</a>
             </nav>
         </div>
     </header>
@@ -92,7 +92,7 @@
         
         <h1>Privacy Policy</h1>
         
-        <p><strong>Last updated:</strong> September 22, 2024</p>
+        <p><strong>Last updated:</strong> September 22, 2025</p>
         
         <p>This Privacy Policy describes how Today in History ("we", "our", or "us") collects, uses, and protects your information when you use our Chrome extension.</p>
 
@@ -200,4 +200,10 @@
         </div>
     </footer>
 </body>
+<script>
+      function installExtension() {
+            // Open Chrome Web Store page for Today in History extension
+            window.open('https://chromewebstore.google.com/detail/today-in-history/cdiehfmgdlomnklkkmpoliodmjfblcph', '_blank');
+        }
+</script>
 </html>
