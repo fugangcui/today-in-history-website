@@ -54,7 +54,7 @@ Then visit: http://localhost:8000
 
 After deployment, the privacy policy URL will be:
 ```
-https://your-domain.com/privacy-policy
+https://history.thebesttools.net/privacy-policy
 ```
 
 This URL can be used in the Chrome Web Store privacy policy field.
